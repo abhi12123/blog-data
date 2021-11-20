@@ -1,0 +1,7 @@
+[submodule "abhinavsblog/themes/etch"]
+	path = abhinavsblog/themes/etch
+	url = https://github.com/LukasJoswiak/etch.git
+[submodule "abhinavsblog/public"]
+	path = abhinavsblog/public
+	url = git@github.com:abhi12123/blog-static.git
+	branch = main

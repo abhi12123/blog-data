@@ -1,0 +1,4 @@
+baseURL = "http://www.abhinavvp.com/"
+languageCode = "en-us"
+title = "Abhinav's Blog"
+theme="etch"
