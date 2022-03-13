@@ -1,0 +1,100 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.94.2"><title>Why You Should Use Error Boundaries in React | Abhinav VP</title><meta name=description content="A simple and concise hugo theme."><link rel=stylesheet href=https://blog.abhinavvp.com/css/simpleness.css><link rel=canonical href=https://blog.abhinavvp.com/posts/why-you-should-use-error-boundaries-in-react/><link rel=alternate type=application/rss+xml href title="Abhinav VP"><link href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css rel=stylesheet></head><body class=container><nav class=navigation><div class=nav-left><div class="nav-item nav-title"><a href=https://www.abhinavvp.com/>Abhinav VP</a></div></div></nav><article class=post><header class=post-header><h1 style=text-align:center>Why You Should Use Error Boundaries in React</h1><div class=post-metadata><time datetime=2022-02-12T18:03:10+05:30>February 12, 2022</time> &nbsp;
+<i class="far fa-clock"></i>
+2 min
+46 s
+&nbsp;</div></header><div class=post-text><p>React Error Boundaries were introduced in React version 16 to generate a fallback UI in case a component were to crash. This was to ensure that a JavaScript error in a single component should not crash the whole app.<br>Consider the following React application which renders the component <code>DisplayName</code> displaying the name according to the input data.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>DisplayName</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./DisplayName&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;App&#34;</span>&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>DisplayName</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;John&#34;</span>, <span style=color:#a6e22e>secondName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Doe&#34;</span> }} /&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>DisplayName</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Lex&#34;</span>, <span style=color:#a6e22e>secondName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Luthor&#34;</span> }} /&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>DisplayName</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Peter&#34;</span>, <span style=color:#a6e22e>secondName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Parker&#34;</span> }} /&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</span></span></code></pre></div><p>The <code>DisplayName</code> component simply displays the name from the passed down <code>name</code> object.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>DisplayName</span>({ <span style=color:#a6e22e>name</span> }) {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span>
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>width</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;600px&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>backgroundColor</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;yellowgreen&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>margin</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;auto&#34;</span>,
+</span></span><span style=display:flex><span>        <span style=color:#a6e22e>border</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;black 1px solid&#34;</span>,
+</span></span><span style=display:flex><span>      }}
+</span></span><span style=display:flex><span>    &gt;
+</span></span><span style=display:flex><span>      {<span style=color:#a6e22e>name</span>.<span style=color:#a6e22e>firstName</span>} {<span style=color:#a6e22e>name</span>.<span style=color:#a6e22e>secondName</span>}
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>The browser will display something like this.</p><p><img src=https://miro.medium.com/max/723/1*iaKiQ9i-jsEewCeHqHMs8g.png alt="code sample"></p><p>If there were any errors while rendering any one of the components the entire application would be crashed and an empty page would be displayed on the production build. It would be hard to find and debug the error as well. For example, the following code will crash the application since the prop <code>name</code> is not being passed down to one of the components.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>DisplayName</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./DisplayName&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;App&#34;</span>&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>DisplayName</span> /&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>DisplayName</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Lex&#34;</span>, <span style=color:#a6e22e>secondName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Luthor&#34;</span> }} /&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>DisplayName</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Peter&#34;</span>, <span style=color:#a6e22e>secondName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Parker&#34;</span> }} /&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</span></span></code></pre></div><h2 id=implementing-error-boundaries>Implementing Error Boundaries</h2><p>Error boundaries work as a JavaScript <code>catch {}</code> block, but for components. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them. Error boundaries are, in fact class components, but will have two lifecycle methods <code>static getDerivedStateFromError</code> and/or <code>componentDidCatch()</code>. Error prone components can be passed down as their children.</p><p><code>static getDerivedStateFromError()</code> can be used to render a fallback UI after an error has been thrown and <code>componentDidCatch()</code> can be used to log error information.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>React</span>, { <span style=color:#a6e22e>Component</span> } <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;react&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ErrorBoundary</span> <span style=color:#66d9ef>extends</span> <span style=color:#a6e22e>Component</span> {
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>constructor</span>(<span style=color:#a6e22e>props</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>super</span>(<span style=color:#a6e22e>props</span>);
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>state</span> <span style=color:#f92672>=</span> {
+</span></span><span style=display:flex><span>      <span style=color:#a6e22e>hasError</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>false</span>,
+</span></span><span style=display:flex><span>    };
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>static</span> <span style=color:#a6e22e>getDerivedStateFromError</span>(<span style=color:#a6e22e>error</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> { <span style=color:#a6e22e>hasError</span><span style=color:#f92672>:</span> <span style=color:#66d9ef>true</span> };
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>componentDidCatch</span>(<span style=color:#a6e22e>error</span>, <span style=color:#a6e22e>info</span>) {
+</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>error</span>, <span style=color:#a6e22e>info</span>);
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>  <span style=color:#a6e22e>render</span>() {
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> (<span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>state</span>.<span style=color:#a6e22e>hasError</span>) {
+</span></span><span style=display:flex><span>      <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>div</span>
+</span></span><span style=display:flex><span>          <span style=color:#a6e22e>style</span><span style=color:#f92672>=</span>{{
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>width</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;600px&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>backgroundColor</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;yellow&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>margin</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;auto&#34;</span>,
+</span></span><span style=display:flex><span>            <span style=color:#a6e22e>border</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;black 1px solid&#34;</span>,
+</span></span><span style=display:flex><span>          }}
+</span></span><span style=display:flex><span>        &gt;
+</span></span><span style=display:flex><span>          <span style=color:#a6e22e>Fall</span> <span style=color:#a6e22e>Back</span> <span style=color:#a6e22e>UI</span>
+</span></span><span style=display:flex><span>        &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>      );
+</span></span><span style=display:flex><span>    }
+</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>this</span>.<span style=color:#a6e22e>props</span>.<span style=color:#a6e22e>children</span>;
+</span></span><span style=display:flex><span>  }
+</span></span><span style=display:flex><span>}
+</span></span></code></pre></div><p>How passing components as children of <code>ErrorBoundary</code> looks</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-jsx data-lang=jsx><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>DisplayName</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./DisplayName&#34;</span>;
+</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>ErrorBoundary</span> <span style=color:#a6e22e>from</span> <span style=color:#e6db74>&#34;./ErrorBoundary&#34;</span>;
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>function</span> <span style=color:#a6e22e>App</span>() {
+</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> (
+</span></span><span style=display:flex><span>    &lt;<span style=color:#f92672>div</span> <span style=color:#a6e22e>className</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;App&#34;</span>&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>ErrorBoundary</span>&gt;
+</span></span><span style=display:flex><span>        &lt;<span style=color:#f92672>DisplayName</span> /&gt;
+</span></span><span style=display:flex><span>      &lt;/<span style=color:#f92672>ErrorBoundary</span>&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>DisplayName</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Lex&#34;</span>, <span style=color:#a6e22e>secondName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Luthor&#34;</span> }} /&gt;
+</span></span><span style=display:flex><span>      &lt;<span style=color:#f92672>DisplayName</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span>{{ <span style=color:#a6e22e>firstName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Peter&#34;</span>, <span style=color:#a6e22e>secondName</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Parker&#34;</span> }} /&gt;
+</span></span><span style=display:flex><span>    &lt;/<span style=color:#f92672>div</span>&gt;
+</span></span><span style=display:flex><span>  );
+</span></span><span style=display:flex><span>}
+</span></span><span style=display:flex><span>
+</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>default</span> <span style=color:#a6e22e>App</span>;
+</span></span></code></pre></div><p>The browser will display output as</p><p><img src=https://miro.medium.com/max/754/1*XYsZV_AY7cXrE3eYJaH7tQ.png alt="code sample"></p><p>Instead of crashing the whole application.</p><p>You may wrap top-level route components to display a message to the user, just like how server-side frameworks often handle crashes or you may wrap individual components in an error boundary to protect them from crashing the rest of the application like above.</p><h2 id=where-error-boundaries-wont-work-in-react>Where Error Boundaries won’t work in React</h2><ul><li>Event handlers</li><li>Asynchronous code (e.g. <code>setTimeout</code> or <code>requestAnimationFrame</code> callbacks)</li><li>Server side rendering</li><li>Errors thrown in the error boundary itself (rather than its children)</li></ul><h2 id=what-about-event-handlers>What about Event Handlers?</h2><p>Error boundaries do not catch errors inside event handlers as React doesn’t need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle methods, the event handlers don’t happen during rendering. So if they throw, React still knows what to display on the screen.<br>If you need to catch an error inside an event handler, use the regular JavaScript <code>try</code> / <code>catch</code> statement.</p></div><footer class=post-footer></footer><div class=comments><div class=comments></div></div></article><div class=foot>Powered by <a href=https://gohugo.io/>Hugo</a>
+&#183;
+<a href=#><i class="fas fa-chevron-up"></i></a></div></body><script src=/js/lazyload.min.js></script>
+<script>var lazyImage=new LazyLoad({container:document.getElementById("article")})</script></html>
