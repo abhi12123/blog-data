@@ -38,12 +38,8 @@ googleAnalytics = ""
 [menu]
   [[menu.main]]
   name = "Blog"
-  url = "/posts/"
+  url = "/"
   weight = 2
-  [[menu.main]]
-  name = "Logs"
-  url = "/logs/"
-  weight = 1
 
 [social]
   github = "https://github.com/RainerChiang"
