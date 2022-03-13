@@ -37,12 +37,12 @@ googleAnalytics = ""
 
 [menu]
   [[menu.main]]
-  name = "Home"
+  name = "Blog"
   url = "/"
   weight = 1
   [[menu.main]]
-  name = "About"
-  url = "/about/"
+  name = "Logs"
+  url = "/logs/"
   weight = 2
 
 [social]

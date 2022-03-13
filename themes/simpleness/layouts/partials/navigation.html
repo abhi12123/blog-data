@@ -3,17 +3,17 @@
     {{ if not (gt (len .Site.Menus) 0) }}
     <a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
     {{ end }}
-    <div class="nav-item nav-title">
+    <!-- <div class="nav-item nav-title">
       <a href="https://blog.abhinavvp.com/"> Blog</a>
-    </div>
-    <!-- <div class="nav-item nav-menu">
+    </div> -->
+    <div class="nav-item nav-menu">
       {{ range .Site.Menus.main }}
       <a href="{{ .URL }}"> {{ .Name }}</a>
       {{ end }}
-    </div> -->
+    </div>
   </div>
   <div class="nav-item nav-right fontawesome">
-    <a href="https://www.abhinavvp.com/"> Home</a>
+    <a href="https://www.abhinavvp.com/"> About</a>
     <!-- {{ if .Site.Social.twitter }}
     <a href="{{ .Site.Social.twitter }}" target="_blank">
       <i title="Twitter" class="fab fa-twitter"></i>
