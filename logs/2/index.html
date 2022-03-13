@@ -1,0 +1,34 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=generator content="Hugo 0.94.2"><title>#2 PostgreSQL notes I | Abhinav VP</title><meta name=description content="A simple and concise hugo theme."><link rel=stylesheet href=https://blog.abhinavvp.com/css/simpleness.css><link rel=canonical href=https://blog.abhinavvp.com/logs/2/><link rel=alternate type=application/rss+xml href title="Abhinav VP"><link href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css rel=stylesheet></head><body class=container><nav class=navigation><div class=nav-left><div class="nav-item nav-menu"><a href=/>Blog</a>
+<a href=/logs/>Logs</a></div></div><div class="nav-item nav-right fontawesome"><a href=https://www.abhinavvp.com/>About</a></div></nav><article class=post><header class=post-header><h1 style=text-align:center>#2 PostgreSQL notes I</h1><div class=post-metadata><time datetime=2021-03-08T00:00:00Z>March 08, 2021</time> &nbsp;
+<i class="far fa-clock"></i>
+3 min
+2 s
+&nbsp;</div></header><div class=post-text><h2 id=tutorial>Tutorial</h2><h3 id=chapter-1-tutorial>Chapter 1. Tutorial</h3><ul><li>Create a database
+<code>createdb dbname</code>* Delete a database
+<code>dropdb dbname</code>* To start psql to interact with database
+<code>psql dbname</code>* To view tables in database
+<code>\t</code></li></ul><h3 id=chapter-2-the-sql-language>Chapter 2. The SQL Language</h3><ul><li>PostgreSQL is a relational database management system (RDBMS). That means it is a system for managing data stored in relations. Relation is essentially a mathematical term for table</li><li>Creating a New Table</li></ul><p>CREATE TABLE weather (
+city varchar(80),
+temp_lo int, &ndash; low temperature
+temp_hi int, &ndash; high temperature
+prcp real, &ndash; precipitation
+date date
+);</p><ul><li>White space (i.e., spaces, tabs, and newlines) can be used freely in SQL commands</li><li>The point type is an example of a PostgreSQL-specific data type.</li><li>To drop tables in database</li></ul><p>DROP TABLE tablename;</p><ul><li>Populating a Table With Rows</li></ul><p>INSERT INTO weather
+VALUES (&lsquo;San Francisco&rsquo;, 46, 50, 0.25,&lsquo;1994-11-27&rsquo;);</p><p>alternative syntax allows you to list the columns explicitly:</p><p>INSERT INTO weather (city, temp_lo, temp_hi, prcp, date)
+VALUES (&lsquo;San Francisco&rsquo;, 43, 57, 0.0, &lsquo;1994-11-29&rsquo;);</p><p>You can list the columns in a different order if you wish or even omit some columns* Querying a Table
+The statement is divided into a select list (the part that lists the columns to be returned), a table list (the part that lists the tables from which to retrieve the data), and an optional qualification (the part that specifies any restrictions)</p><p>SELECT * FROM weather;</p><p>Here * is a shorthand for “all columns”* Joins Between Tables
+Queries can access multiple tables at once, or access the same table in such a way that multiple rows of the table are being processed at the same time. Queries that access multiple tables (or multiple instances of the same table) at one time are called <strong>join queries</strong>. They combine rows from one table with rows from a second table, with an expression specifying which rows are to be paired</p><p>SELECT * FROM weather JOIN cities ON city = name;</p><p>Since the columns all had different names, the parser automatically found which table they belong to. If there were duplicate column names in the two tables you&rsquo;d need to qualify the column names to show which one you meant, as in:</p><p>SELECT * FROM weather JOIN cities ON weather.city = cities.name;</p><p>If no matching row is found we want some “empty values” to be substituted for the a table&rsquo;s columns. This kind of query is called an <strong>outer join</strong>.The earlier one is <strong>inner joins</strong>.</p><p>SELECT * FROM weather LEFT OUTER JOIN cities ON weather.city = cities.name;</p><p><strong>left outer join</strong> : table mentioned on the left of the join operator will have each of its rows in the output at least once, whereas the table on the right will only have those rows output that match some row of the left table. When outputting a left-table row for which there is no right-table match, empty (null) values are substituted for the right-table columns. <strong>self join</strong> : join a table against itself.* Aggregate Functions
+computes a single result from multiple input rows. eg count, sum, avg (average), max (maximum) and min (minimum).</p><p>SELECT max(temp_lo) FROM weather;</p><p>Aggregate max cannot be used in the WHERE clause. the WHERE clause determines which rows will be included in the aggregate calculation; so it has to be evaluated before aggregate functions are computed. Task can be achieved using a SubQuery.</p><p>SELECT city FROM weather
+WHERE temp_lo = (SELECT max(temp_lo) FROM weather);</p><p>Aggregates are also very useful in combination with GROUP BY clauses.</p><p>SELECT city, max(temp_lo)
+FROM weather
+GROUP BY city;</p><p>We can filter these grouped rows using <strong>HAVING</strong></p><pre><code>            SELECT city, max(temp\_lo)
+            FROM weather
+            GROUP BY city
+            HAVING max(temp\_lo) &lt; 40;
+</code></pre><ul><li>difference between WHERE and HAVING
+WHERE selects input rows before groups and aggregates are computed, whereas HAVING selects group rows after groups and aggregates are computed* Updates</li></ul><p>UPDATE weather
+SET temp_hi = temp_hi - 2, temp_lo = temp_lo - 2
+WHERE date > &lsquo;1994-11-28&rsquo;;</p><ul><li>Deletions</li></ul><p>DELETE FROM weather WHERE city = &lsquo;Hayward&rsquo;;</p><p>whereas</p><p>DELETE FROM tablename;</p><p>will remove all rows from the given table, leaving it empty</p></div><footer class=post-footer></footer><div class=comments><div class=comments></div></div></article><div class=foot>Powered by <a href=https://gohugo.io/>Hugo</a>
+&#183;
+<a href=#><i class="fas fa-chevron-up"></i></a></div></body><script src=/js/lazyload.min.js></script>
+<script>var lazyImage=new LazyLoad({container:document.getElementById("article")})</script></html>
