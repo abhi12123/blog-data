@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.89.4" />
+  <title> 4 JavaScript Tips for Shorter Code | Abhinav VP </title>
+  <meta name="description" content="A simple and concise hugo theme.">
+  <link rel="stylesheet" href="https://blog.abhinavvp.com/css/simpleness.css">
+  <link rel="canonical" href="https://blog.abhinavvp.com/posts/4-javascript-tips-for-shorter-code/">
+  <link rel="alternate" type="application/rss+xml" href="" title="Abhinav VP">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  
+</head>
+<body class="container">
+  <nav class="navigation">
+  <div class="nav-left">
+    
+    <div class="nav-item nav-title">
+      <a href="https://www.abhinavvp.com/"> Abhinav VP</a>
+    </div>
+    
+  </div>
+  
+</nav>
+
+  
+<article class="post">
+  <header class="post-header">
+    <h1 style="text-align: center;" >4 JavaScript Tips for Shorter Code</h1>
+    <div class="post-metadata">
+    
+      <time datetime="2021-11-21T16:09:31&#43;05:30">November 21, 2021</time> &nbsp; 
+    
+    
+    
+    
+    
+      <i class="far fa-clock"></i>
+      
+      
+      
+      
+        2 min
+      
+      31 s
+      &nbsp;
+    
+    
+    </div>
+  </header>
+
+  
+
+  <div class="post-text">
+    <p>There are plenty of tips which can be followed to make the JavaScript code shorter as well less complicated. I will share four of such tips which have reduced the effort and development time for me a lot while coding.</p>
+<h1 id="1-short-circuiting">1. Short Circuiting</h1>
+<p>This can be used when you’ll have to use a simple if condition.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">x</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> ){
+  <span style="color:#a6e22e">foo</span>()
+}
+</code></pre></div><p>Short circuiting can be achieved by using &amp;&amp; operator. Code after &amp;&amp; won’t be executed if the condition before &amp;&amp; evaluates to false.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">x</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">foo</span>()
+</code></pre></div><p>This can be chained to replace multiple if statements</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#a6e22e">x</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">y</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">foo</span>()
+</code></pre></div><h1 id="2-check-if-objects-exist-using--operator">2. Check if objects exist using ? operator</h1>
+<p>This is really helpful if you are dealing with scenarios like API calls or with objects of which you aren’t certain whether it or its keys are initialised.
+Consider an object studentObject with a key ‘name’ with value an object with key ‘firstName’. Directly accessing the key value using ‘studentObject.name.firstName’ might throw error . One way to evaluate whether the key exists is using nested if conditions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">studentObject</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">firstName</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Joe&#39;</span>
+  }
+}
+<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">studentObject</span>.<span style="color:#a6e22e">name</span>){
+  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">studentObject</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">firstName</span>){
+    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;student First name exists&#39;</span>)
+  }
+}
+</code></pre></div><p>This can be made shorter using ‘?’ operator. If studentObject.name do not exist it will evaluate to false.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">studentObject</span> <span style="color:#f92672">=</span> {
+  <span style="color:#a6e22e">name</span> <span style="color:#f92672">:</span> {
+    <span style="color:#a6e22e">firstName</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;Joe&#39;</span>
+  }
+}
+<span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">studentObject</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">firstName</span>){
+  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;student First name exists&#39;</span>)
+}
+</code></pre></div><p>Edit : Node has only limited support for optional chaining operator.</p>
+<h1 id="3-using-nullish-coalescing-operator-">3. Using Nullish coalescing operator (??)</h1>
+<p>Ternary operator already makes the code short as compared to if else statement. It’s handy if the block of code to be executed is small.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foo</span> <span style="color:#f92672">=</span> () =&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">studentObject</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">firstName</span> <span style="color:#f92672">?</span> 
+    <span style="color:#a6e22e">studentObject</span>.<span style="color:#a6e22e">name</span>.<span style="color:#a6e22e">firstName</span> <span style="color:#f92672">:</span> 
+    <span style="color:#e6db74">&#39;firstName do not exist&#39;</span>
+}
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">foo</span>())
+</code></pre></div><p>In cases where you have to return the operand to the left of ‘?’, you can use the ‘??’ operator to make the code even shorter.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foo</span> <span style="color:#f92672">=</span> () =&gt; {
+  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">studentObject</span>.<span style="color:#a6e22e">name</span><span style="color:#f92672">?</span>.<span style="color:#a6e22e">firstName</span> <span style="color:#f92672">??</span> 
+  <span style="color:#e6db74">&#39;firstName do not exist&#39;</span>
+}
+<span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">foo</span>())
+</code></pre></div><h1 id="4-terminating-the-function-instead-of-if-else-nesting">4. Terminating the function instead of if else nesting</h1>
+<p>consider the below function which checks the value of ‘x’</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foo</span> <span style="color:#f92672">=</span> () =&gt; {
+  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">x</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span>){
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;x is less than 1&#39;</span>
+  }<span style="color:#66d9ef">else</span>{
+    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">1</span>){
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;x is greater than 1&#39;</span>
+    }<span style="color:#66d9ef">else</span>{
+      <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;x is equal to 1&#39;</span>
+    }
+  }
+}
+</code></pre></div><p>This if else nesting can be made less complicated by removing else conditions, as a return statement will stop code execution and return the function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">foo</span> <span style="color:#f92672">=</span> () =&gt; {
+  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">x</span><span style="color:#f92672">&lt;</span><span style="color:#ae81ff">1</span>){
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;less than 1&#39;</span>
+  }
+  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">x</span><span style="color:#f92672">&gt;</span><span style="color:#ae81ff">1</span>){
+    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;x is greater than 1&#39;</span>
+  }
+  <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#39;x is equal to 1&#39;</span>
+}
+</code></pre></div><h1 id="a-good-code-need-not-be-short">A good code need not be short</h1>
+<p>Preference must be given for readability over making the code shorter. In some cases debugging the code would be quite hard especially if the code is maintained by multiple developers.
+Short-circuiting is a feature of expression evaluation. In this case, you&rsquo;re using that feature to actually execute code; in other words, a side-effect of the expression is that it executes code.
+There are two problems with this idea:</p>
+<ol>
+<li>it encourages writing even more complex expressions simply for their side-effects, eventually becoming a maintenance nightmare.</li>
+<li>it&rsquo;s doesn&rsquo;t execute the actual code any faster than the explicit (if) form.
+A good rule of thumb: explicit &gt; implicit</li>
+</ol>
+
+  </div>
+
+  <footer class="post-footer">
+    
+
+    
+
+    
+    
+  </footer>
+  
+  <div class="comments">
+  <div class="comments">
+
+
+
+</div>
+  </div>
+</article>
+
+  <div class="foot">
+  
+  
+  
+  Powered by <a href="https://gohugo.io/">Hugo</a> 
+  &#183;
+  <a href="#"><i class="fas fa-chevron-up"></i></a>
+</div>
+</body>
+  <script src="/js/lazyload.min.js"></script>
+<script>
+  var lazyImage = new LazyLoad({container: document.getElementById('article')});
+</script>
+
+
+
+
+</html>

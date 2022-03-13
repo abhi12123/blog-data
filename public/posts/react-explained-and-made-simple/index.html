@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.89.4" />
+  <title> React Explained and Made Simple | Abhinav VP </title>
+  <meta name="description" content="A simple and concise hugo theme.">
+  <link rel="stylesheet" href="https://blog.abhinavvp.com/css/simpleness.css">
+  <link rel="canonical" href="https://blog.abhinavvp.com/posts/react-explained-and-made-simple/">
+  <link rel="alternate" type="application/rss+xml" href="" title="Abhinav VP">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  
+</head>
+<body class="container">
+  <nav class="navigation">
+  <div class="nav-left">
+    
+    <div class="nav-item nav-title">
+      <a href="https://www.abhinavvp.com/"> Abhinav VP</a>
+    </div>
+    
+  </div>
+  
+</nav>
+
+  
+<article class="post">
+  <header class="post-header">
+    <h1 style="text-align: center;" >React Explained and Made Simple</h1>
+    <div class="post-metadata">
+    
+      <time datetime="2021-11-21T17:16:42&#43;05:30">November 21, 2021</time> &nbsp; 
+    
+    
+    
+    
+    
+      <i class="far fa-clock"></i>
+      
+      
+      
+      
+        3 min
+      
+      52 s
+      &nbsp;
+    
+    
+    </div>
+  </header>
+
+  
+
+  <div class="post-text">
+    <p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1635659888350/RiQ52UEMy.png" alt="image.png"></p>
+<h1 id="is-react-a-framework-">Is React a Framework ?</h1>
+<p>As per the landing page of React , it is a JavaScript library to build user interfaces. Its not a framework, but a library.
+Angular, Vue, Next.js, Gatsby, Redwood.js etc are examples for frameworks. A framework includes resources that a large-scale application might need : creating forms, running automated tests, making network requests etc.
+Whereas React itself does not include many of these functionalities. Core react is used only to build User Interfaces. In order to build complete React applications, you will need to choose the required packages and tools on your own. For example, for forms and validation React Hook Form or Formik can be used and for testing React Testing Library or Jest can be used.</p>
+<h1 id="features-of-react">Features of React</h1>
+<h2 id="component-based">Component Based</h2>
+<p>In React, a web page can be divided to encapsulated blocks of code called components. These components can be composed to create complex UIs. Component logic is written in JavaScript instead of templates in React. Required data can be passed to the web app via these components easily, which renders accordingly on change.</p>
+<p><img src="https://cdn.hashnode.com/res/hashnode/image/upload/v1635659993376/DjJ1PAZvy.png" alt="image.png"></p>
+<h2 id="declarative">Declarative</h2>
+<p>Simple views can be designed for each state in your application and data can be passed into it. React will efficiently update and render just the right components when your data changes.</p>
+<h2 id="learn-once-write-anywhere">Learn Once, Write Anywhere</h2>
+<p>React can be used along with multiple technology stacks. Thus you can develop new features in React without rewriting existing code. React can also render on the server using Node and it can power mobile apps using React Native.</p>
+<h1 id="add-react-to-a-website">Add React to a Website</h1>
+<p>React can be added in small parts to your website and then can be gradually expand its presence</p>
+<h2 id="step-1--add-a-dom-container-to-the-html">Step 1 : Add a DOM Container to the HTML</h2>
+<p>Open the HTML page you want to edit and Add an empty <code>&lt;div&gt;</code> tag to mark the spot where you want to display something with React.
+A unique id HTML attribute is given to div which will allow us to find it from the JavaScript code later and display a React component inside of it. You can place a “container” <code>&lt;div&gt;</code> like this anywhere inside the <code>&lt;body&gt;</code> tag. You may have as many independent DOM containers on one page as you need. They are usually empty — React will replace any existing content inside DOM containers.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!--… existing HTML … --&gt;</span> 
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#39;name-container&#39;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+<span style="color:#75715e">&lt;!-- … existing HTML … --&gt;</span>
+</code></pre></div><h2 id="step-2--add-the-script-tags">Step 2 : Add the Script Tags</h2>
+<p>You will have to add three <code>&lt;script&gt;</code> tags to the HTML page right before the closing <!-- raw HTML omitted --> tag. The first two tags load React. The third one will load your component code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- … other HTML … --&gt;</span>
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/react@17/umd/react.development.js&#34;</span> <span style="color:#a6e22e">crossorigin</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://unpkg.com/react-dom@17/umd/react-dom.development.js&#34;</span> <span style="color:#a6e22e">crossorigin</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+<span style="color:#75715e">&lt;!-- Load our React component. --&gt;</span>
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;name_component.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><h2 id="step-3-create-a-react-component">Step 3: Create a React Component</h2>
+<p>Create a file called <code>name_container.js</code>. This code defines a React component called <code>NameContainer</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-js" data-lang="js"><span style="color:#e6db74">&#39;use strict&#39;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">e</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">createElement</span>;
+
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NameContainer</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+  <span style="color:#a6e22e">render</span>() {
+    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">e</span>(<span style="color:#e6db74">&#39;div&#39;</span>,<span style="color:#66d9ef">null</span>,<span style="color:#e6db74">&#39;Joe&#39;</span>);
+  }
+}
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">domContainer</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#39;#name-container&#39;</span>);
+<span style="color:#a6e22e">ReactDOM</span>.<span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">e</span>(<span style="color:#a6e22e">NameContainer</span>), <span style="color:#a6e22e">domContainer</span>);
+</code></pre></div><p><strong>React</strong> is used to create components. Create Element function of React takes Three arguments</p>
+<ul>
+<li>Type : div, h1, p, span etc</li>
+<li>[props] : class, id, onClck etc</li>
+<li>[…children] : string, another DOM element</li>
+</ul>
+<p><strong>ReactDOM</strong> is used to render components in DOM. Render function of ReactDOM takes two arguments</p>
+<ul>
+<li>Element to Render</li>
+<li>Dom Container into which it should be rendered</li>
+</ul>
+<h2 id="step-4-try-react-with-jsx--optional-">Step 4: Try React with JSX ( optional )</h2>
+<p>In the previous example we only relied on features that are natively supported by browsers. This is why we used a JavaScript function call to tell React what to display: However, React also offers an option to use JSX instead. While JSX is completely optional, many people find it helpful for writing UI code. Add this <code>&lt;script&gt;</code> tag to your page and you can use JSX in any <code>&lt;script&gt;</code> tag by adding <code>type='text/babel'</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">”https://unpkg.com/babel-standalone@6/babel.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">”name_component.js”</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">”text/babel”</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><p><code>name_container.js</code> can be modified accordingly</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-jsx" data-lang="jsx"><span style="color:#e6db74">&#34;use strict&#34;</span>;
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">e</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">createElement</span>;
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NameContainer</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+  <span style="color:#a6e22e">render</span>() {
+    <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">div</span>&gt;<span style="color:#a6e22e">Joe</span>&lt;/<span style="color:#f92672">div</span>&gt;
+  }
+}
+<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">domContainer</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelector</span>(<span style="color:#e6db74">&#34;#name-container&#34;</span>);
+<span style="color:#a6e22e">ReactDOM</span>.<span style="color:#a6e22e">render</span>(<span style="color:#a6e22e">e</span>(<span style="color:#a6e22e">NameContainer</span>), <span style="color:#a6e22e">domContainer</span>);
+</code></pre></div><h1 id="recommended-toolchains">Recommended Toolchains</h1>
+<p>The React team primarily recommends these solutions:</p>
+<ul>
+<li>Create React App : If you’re learning React or creating a new single-page app</li>
+<li>Next.js : If you’re building a server-rendered website with Node.js</li>
+<li>Gatsby : If you’re building a static content-oriented website</li>
+<li>Others : Neutrino, Nx, Parcel, Razzle</li>
+</ul>
+<p>Create React App is a comfortable environment for learning React. It is the best way to start building a new single-page application in React. You can use the latest JavaScript features and it provides a nice developer experience and optimizes your app for production.
+You’ll need to have Node &gt;= 14.0.0 and npm &gt;= 5.6 on your machine
+To create a project, run:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-console" data-lang="console">npx create-react-app my-app
+cd my-app
+npm start
+</code></pre></div><p>Create React App doesn’t handle backend logic or databases. it just creates a frontend build pipeline which you can use it with any backend you want. Under the hood, it uses Babel and webpack, but you don’t need to know anything about them. When you’re ready to deploy to production, running npm run build will create an optimized build of your app.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+
+    
+
+    
+    
+  </footer>
+  
+  <div class="comments">
+  <div class="comments">
+
+
+
+</div>
+  </div>
+</article>
+
+  <div class="foot">
+  
+  
+  
+  Powered by <a href="https://gohugo.io/">Hugo</a> 
+  &#183;
+  <a href="#"><i class="fas fa-chevron-up"></i></a>
+</div>
+</body>
+  <script src="/js/lazyload.min.js"></script>
+<script>
+  var lazyImage = new LazyLoad({container: document.getElementById('article')});
+</script>
+
+
+
+
+</html>

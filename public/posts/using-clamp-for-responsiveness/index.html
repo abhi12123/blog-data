@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.89.4" />
+  <title> Using Clamp() for Responsiveness | Abhinav VP </title>
+  <meta name="description" content="A simple and concise hugo theme.">
+  <link rel="stylesheet" href="https://blog.abhinavvp.com/css/simpleness.css">
+  <link rel="canonical" href="https://blog.abhinavvp.com/posts/using-clamp-for-responsiveness/">
+  <link rel="alternate" type="application/rss+xml" href="" title="Abhinav VP">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  
+</head>
+<body class="container">
+  <nav class="navigation">
+  <div class="nav-left">
+    
+    <div class="nav-item nav-title">
+      <a href="https://www.abhinavvp.com/"> Abhinav VP</a>
+    </div>
+    
+  </div>
+  
+</nav>
+
+  
+<article class="post">
+  <header class="post-header">
+    <h1 style="text-align: center;" >Using Clamp() for Responsiveness</h1>
+    <div class="post-metadata">
+    
+      <time datetime="2021-11-21T15:52:12&#43;05:30">November 21, 2021</time> &nbsp; 
+    
+    
+    
+    
+    
+      <i class="far fa-clock"></i>
+      
+      
+      
+      
+      51 s
+      &nbsp;
+    
+    
+    </div>
+  </header>
+
+  
+
+  <div class="post-text">
+    <p><strong>Clamp()</strong> is one of the most useful yet underrated functions in CSS to ensure responsiveness in web design.
+Web pages can be viewed from multiple platforms, and you will have to ensure that the design won&rsquo;t break in any of the viewports.</p>
+<hr>
+<p>Consider an id &lsquo;text&rsquo; with font-size as 3rem.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#text{
+  <span style="color:#66d9ef">font-size</span>:<span style="color:#ae81ff">3</span><span style="color:#66d9ef">rem</span>;
+}
+</code></pre></div><p>The problem is that irrespective of the viewport, font size remains constant. One way to deal with this is to replace rem with % or vw so that the font size becomes relative to the viewport.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#text{
+  <span style="color:#66d9ef">font-size</span>:<span style="color:#ae81ff">7</span><span style="color:#66d9ef">vw</span>;
+}
+</code></pre></div><p>The issue that one could face with the above method is that there are no minimum and maximum limits. The text could get incredibly bigger or smaller depending upon the viewport.
+This is where Clamp() comes to the rescue.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-css" data-lang="css">#text {
+  <span style="color:#66d9ef">font-size</span>:<span style="color:#a6e22e">clamp</span>(<span style="color:#ae81ff">2</span><span style="color:#66d9ef">rem</span>,<span style="color:#ae81ff">7</span><span style="color:#66d9ef">vw</span>,<span style="color:#ae81ff">4</span><span style="color:#66d9ef">rem</span>);
+}
+</code></pre></div><p>Clamp() is a combination of min() and max(). It takes 3 arguments: the lower limit, the variable, and the upper limit. It clamps a value between the provided lower and upper limit. This ensures that the width remains relative to the viewport at the same time with a lower and upper bound.</p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+
+    
+
+    
+    
+  </footer>
+  
+  <div class="comments">
+  <div class="comments">
+
+
+
+</div>
+  </div>
+</article>
+
+  <div class="foot">
+  
+  
+  
+  Powered by <a href="https://gohugo.io/">Hugo</a> 
+  &#183;
+  <a href="#"><i class="fas fa-chevron-up"></i></a>
+</div>
+</body>
+  <script src="/js/lazyload.min.js"></script>
+<script>
+  var lazyImage = new LazyLoad({container: document.getElementById('article')});
+</script>
+
+
+
+
+</html>

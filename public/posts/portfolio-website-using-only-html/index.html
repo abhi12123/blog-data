@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="Hugo 0.89.4" />
+  <title> I made a portfolio website using only HTML without any Styles. This is what I learned | Abhinav VP </title>
+  <meta name="description" content="A simple and concise hugo theme.">
+  <link rel="stylesheet" href="https://blog.abhinavvp.com/css/simpleness.css">
+  <link rel="canonical" href="https://blog.abhinavvp.com/posts/portfolio-website-using-only-html/">
+  <link rel="alternate" type="application/rss+xml" href="" title="Abhinav VP">
+  
+  
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+  
+</head>
+<body class="container">
+  <nav class="navigation">
+  <div class="nav-left">
+    
+    <div class="nav-item nav-title">
+      <a href="https://www.abhinavvp.com/"> Abhinav VP</a>
+    </div>
+    
+  </div>
+  
+</nav>
+
+  
+<article class="post">
+  <header class="post-header">
+    <h1 style="text-align: center;" >I made a portfolio website using only HTML without any Styles. This is what I learned</h1>
+    <div class="post-metadata">
+    
+      <time datetime="2022-02-27T18:29:59&#43;05:30">February 27, 2022</time> &nbsp; 
+    
+    
+    
+    
+    
+      <i class="far fa-clock"></i>
+      
+      
+      
+      
+        1 min
+      
+      22 s
+      &nbsp;
+    
+    
+    </div>
+  </header>
+
+  
+
+  <div class="post-text">
+    <p>I made a portfolio website using only HTML without any styles. The intention was to push the limits of pure HTML and see its capabilities, and it was worth it. These are some of the things I’ve learned during the process.</p>
+<p><img src="https://miro.medium.com/max/542/1*6MnrGagtCj1Bb6_xG-2Z0Q.png" alt="the html portfolio"></p>
+<h2 id="1body-tag-has-some-styling-properties">1.<code>&lt;body&gt;</code> tag has some styling properties</h2>
+<p>The body tag has some styling properties, but most of them are depreciated. There are attributes to change background color, text color, background image, hyperlink colors, and margin. But it is advisable to use CSS properties to achieve that as these are depreciated.</p>
+<h2 id="2details-can-be-used-as-a-drop-down-element">2.<code>&lt;details&gt;</code> can be used as a drop down element.</h2>
+<p>the <code>&lt;details&gt;</code> element is a widget that has an ‘open’ state which can be used to store information. Label can be provided inside the <code>&lt;summary&gt;</code> tag.
+When the user clicks on the widget or focuses it then presses the space bar, it opens, revealing its contents.<br>
+By default when closed, the widget only displays the disclosure triangle and summary. When open, it expands to display the details contained within.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">details</span>&gt;
+    &lt;<span style="color:#f92672">summary</span>&gt;Data&lt;/<span style="color:#f92672">summary</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;the data to display&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">details</span>&gt;
+</code></pre></div><h2 id="3target_blank-and-targetblank">3.<code>target=’_blank’</code> and <code>target=’blank’</code></h2>
+<p>The <code>&lt;a&gt;</code> has a href property which can be used to create hyperlinks. It also has a target property that decides where the linked URL has to be displayed. The keywords are :</p>
+<ul>
+<li><code>_self</code>: the current browsing context. (Default)</li>
+<li><code>_blank</code>: usually a new tab, but users can configure browsers to open a new window instead.</li>
+<li><code>_parent</code>: the parent browsing context of the current one. If no parent, behaves as <code>_self</code>.</li>
+<li><code>_top</code>: the topmost browsing context (the &ldquo;highest&rdquo; context that&rsquo;s an ancestor of the current one).</li>
+</ul>
+<p>Another keyword is <code>blank</code> where the URL will be displayed in a new tab, but on clicking again it will be reloaded in the same tab unlike _blank where new tabs are opened every time.</p>
+<hr>
+<p>The website is hosted over <a href="http://htmlportfolio.abhinavvp.com/">here</a></p>
+
+  </div>
+
+  <footer class="post-footer">
+    
+
+    
+
+    
+    
+  </footer>
+  
+  <div class="comments">
+  <div class="comments">
+
+
+
+</div>
+  </div>
+</article>
+
+  <div class="foot">
+  
+  
+  
+  Powered by <a href="https://gohugo.io/">Hugo</a> 
+  &#183;
+  <a href="#"><i class="fas fa-chevron-up"></i></a>
+</div>
+</body>
+  <script src="/js/lazyload.min.js"></script>
+<script>
+  var lazyImage = new LazyLoad({container: document.getElementById('article')});
+</script>
+
+
+
+
+</html>
