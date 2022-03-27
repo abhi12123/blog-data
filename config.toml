@@ -1,4 +1,4 @@
-baseURL = "https://blog.abhinavvp.com/"
+baseURL = "https://www.abhinavvp.com/"
 languageCode = "en"
 DefaultContentLanguage = "en"
 enableInlineShortcodes = true
